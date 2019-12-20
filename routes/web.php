@@ -16,14 +16,16 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'],function() {
-  Route::get('new/create','Admin\NewController@add');
-  //セクション9課題No4
-  Route::get('profile/create','Admin\ProfileController@add');
-  Route::get('profile/edit','Admin\ProfileController@edit');
+  Route::get('news/create','Admin\NewsController@add')->middleware('auth');
+  Route::get('profile/create' , 'Admin\ProfileController@add')->middleware('auth');
+  Route::get('profile/edit' , 'Admin\ProfileController@edit')->middleware('auth');
 });
 
 
-//課題No3
-Route::group(['prefix' => 'XXX'], function() {
-  Route::get('XXX/XXX','XXX\AAAController@bbb');
-});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
