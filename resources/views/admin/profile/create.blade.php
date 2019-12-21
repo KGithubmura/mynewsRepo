@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset = "UTF-8">
-    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1">
-    
-    <title>My Profile</title>
-    
-  </head>
-  <body>
-    @extends('layouts.profile')
-    @section('title,プロフィール')
-    @section('content')
+ @extends('layouts.profile')
+ @section('title,プロフィール')
+ @section('content')
     <div class = "container">
       <div class = "row">
         <div class = "col-md-8 mx-auto">
@@ -27,25 +16,25 @@
                   <div class="form-group row">
                      <label class="col-md-2">氏名</label>
                        <div class="col-md-10">
-                          <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                          <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                         </div>
                   </div>
                   <div class="form-group row">
                      <label class="col-md-2">性別</label>
                        <div class="col-md-10">
-                          <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                          <input type="text" class="form-control" name="gender" value="{{ old('gender') }}">
                         </div>
                   </div>
                   <div class="form-group row">
                      <label class="col-md-2">趣味</label>
                        <div class="col-md-10">
-                          <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                          <input type="text" class="form-control" name="hobby" value="{{ old('hobby') }}">
                         </div>
                   </div>
                   <div class="form-group row">
                      <label class="col-md-2">自己紹介欄</label>
                        <div class="col-md-10">
-                          <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
+                          <textarea class="form-control" name="introdction" rows="20">{{ old('introdction') }}</textarea>
                        </div>
                   </div>
                   <div class="form-group row">
@@ -60,6 +49,5 @@
         </div>
       </div>
     </div>
-    @endsection
-  </body>
-</html>
+  @endsection
+  
