@@ -9,41 +9,61 @@ use App\Profile;
 class ProfileController extends Controller
 {
     //
-    public function add()
+public function add()
     {
         return view('admin.profile.create');
     }
 
-    public function create(Request $request)
+public function create(Request $request)
     {
       
       $this->validate($request, Profile::$rules);
-      $news = new Profile;
+      $profile = new Profile;
       $form = $request->all();
 
       if (isset($form['image'])) {
         $path = $request->file('image')->store('public/image');
-        $news->image_path = basename($path);
+        $profile->image_path = basename($path);
       } else {
-          $news->image_path = null;
+          $profile->image_path = null;
       }
 
       unset($form['_token']);
       unset($form['image']);
 
-      $news->fill($form);
-      $news->save();
-
+      $profile->fill($form);
+      $profile->save();
+    
         return redirect('admin/profile/create');
     }
 
-    public function edit()
-    {
-        return view('admin.profile.edit');
+public function edit(Request $request)
+    {   
+      $profile = Profile::find($request->id);
+      if (empty($profile)) {
+        abort(404);    
+      }
+      return view('admin.profile.edit', ['profile_form' => $profile]);
     }
 
-    public function update()
+
+public function update(Request $request)
     {
-        return redirect('admin/profile/edit');
+      $this->validate($request, Profile::$rules);
+      $profile= Profile::find($request->id);
+      $profile_form = $request->all();
+      if (isset($profile_form['image'])) {
+        $path = $request->file('image')->store('public/image');
+        $profile->image_path = basename($path);
+        unset($profile_form['image']);
+      } elseif (isset($request->remove)) {
+        $profile->image_path = null;
+        unset($profile_form['remove']);
+      }
+      unset($profile_form['_token']);
+      
+      $profile->fill($profile_form)->save();
+
+      return redirect('admin/profile');
     }
 }
