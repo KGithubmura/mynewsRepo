@@ -18,6 +18,8 @@ public function add()
     {
         return view('admin.profile.create');
     }
+
+
 public function create(Request $request)
     {
       
@@ -45,6 +47,7 @@ public function index(Request $request)
       return view('admin.profile.index',['posts' => $posts, 'cond_title' => $cond_title]);
     }
     
+
 public function edit(Request $request)
     {   
       $profile = Profile::find($request->id);
@@ -53,6 +56,8 @@ public function edit(Request $request)
       }
       return view('admin.profile.edit', ['profile_form' => $profile]);
     }
+
+
 public function update(Request $request)
     {
       $this->validate($request, Profile::$rules);
