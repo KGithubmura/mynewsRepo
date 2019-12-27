@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
       <div class="row">
-            <h2>自己紹介</h2>
+            <h2>Myプロフィール</h2>
         </div>
-        <hr color="#c0c0c0">
+        <hr color="#DDEEDD">
         @if (!is_null($headline))
             <div class="row">
                 <div class="headline col-md-10 mx-auto">
@@ -34,7 +34,7 @@
                 </div>
             </div>
         @endif
-        
+       <hr color="#DDEEDD">
     </div>
 </div>
 @endsection
